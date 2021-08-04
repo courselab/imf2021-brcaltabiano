@@ -1,0 +1,148 @@
+  Reverse engineer mission.
+  ==============================
+
+  Good evening Mr. Hunt.
+
+  Along with this message you should find a few software artifacts obtained
+  from a confidential source by means which shall not be disclosed. While
+  further details on the origin and purpose of the material are considered
+  strictly classified, permission is granted to inform you through this channel
+  that an Intelligence authority believes that the knowledge of the contents
+  of the package may be of utmost strategical value.
+
+  Special maneuvers have been put in action to obtain a copy of the referred
+  material, which you are now given access to. Unfortunately, however, the
+  not only the referred software components are secured by access protection
+  mechanisms which prevent the relevant information to be recovered, but
+  also the retrieved artifacts are not guaranteed to be complete.
+
+  Your mission, should you accept it, is to reverse engineer the software
+  fragment and provide an effective mechanism to build and execute it.
+  Complementary technical information and directions to complete this
+  task follow.
+
+  As always should you or any of your team would be caught, or killed, the
+  secretary will disavow any knowledge of your actions. While it is unlikely
+  that this message self-destruct in five seconds, be aware just for the case.
+
+  Mission directions
+  --------------------------------
+
+  The intelligence authority is informed that a computer program referred to
+  as 'decode' is used by a suspicious organization to obfuscate communication
+  between their members. Their security workflow requires that received
+  messages be handled once within the organization premises, and then destroyed
+  immediately, without any data being transferred outside the facility. The
+  network and operational protocols are heavily secured to prevent violations.
+
+  As the only resort, special maneuvers have been made which allowed a
+  trusted undercover agent to gain local access to 'decode'. The agent,
+  however, does not have the required authorization key. That is why your
+  skills are begin requested. You are expected to perform a technical
+  intervention to circumvent the security measure and allow the agent to
+  gain full access to the program functionality.
+
+  This would not be an IMF job if conditions were as simple as that.
+  The target platform in the facility is secured by a mechanism which performs
+  a hash-check verification of the binary program during loading, and deny its
+  execution if the computed value is not recognized. This rules out any
+  practical possibility of hacking the program under our current constraints.
+
+  The only way to break-in the protection measures is by exploiting a breach
+  in the security mechanism which allow one to perform a supply-chain attack.
+  Owing to a flawed technical design, the hash-check system does not verify
+  the dynamic libraries in the system. It is therefore possible to supply
+  replacement libraries and have the program to inadvertently use them instead
+  of the local ones.  The Intelligence unit believes you may be able to modify
+  those libraries to bypass the authorization key request.
+
+  To that end, undisclosed devices were put into action to secretly obtain
+  a copy of the referred software, which you are now given access to.  And as
+  you probably guess after years of experience, you and your team would not be
+  contacted if we were in the possession of source code. All that we have
+  is the software in its executable form.
+
+  Not only that.
+
+  Despite the unyielding efforts of relentless field personal, however, the
+  operation unit was not able to retrieve the material in its integrity, such
+  that part of the items were obtained in incomplete or potentially corrupted
+  form. You should detect those defects and provide suitable corrections.
+
+  In order to test the hacked program you are also given access to some data
+  files with obfuscated contents. If your implementation is capable of
+  decrypting the files, your mission should be considered accomplished.
+
+  For the operation to be successfully, the tactical unity expect to receive
+  a distribution file contained the software components along with a suitably
+  configure automation build system.
+
+  Technical details
+  ------------------------------
+
+  Within the main project directory you should find 6 files
+
+  a) this README file with the present instructions;
+  b) the object file 'decode.o';
+  c) the library 'libcypher.so' used by the executable;
+  d) crypt1.dat and crypt2.dat, obfuscate data files.
+
+  The following workflow has been suggested
+
+  1) Inspect the artifacts.
+
+     Identify the characteristics of the target runtime and
+     proceed accordingly.
+
+  2) Write a Make script to build the software.
+
+     Build the executable 'decode' from decode.o and libcypher.so.
+
+     Create a distribution tarball decode.tar.gz with all the
+     project files.
+
+  3) Execute the program.
+
+     Execution should be prevented by the protection mechanism.
+
+     Recall that 'decode.o' should not be modified so as not to
+     violate the hash-check execution protection. The protection
+     should be circumvented non-invasively from outside the object.
+
+  4) Attempt to deobfuscate crypt1.dat.
+
+     It is known that the program command-line interface is
+
+         decode -d -k <key> <input-file> <output-file>
+
+     where <hey> is the ASCII string used to encrypt the data.
+
+     If the program runs successfully, you should be able to access
+     the contents of the input file.
+
+  5) Attempt to deobufscate crypt2.dat.
+
+     Should you detect a runtime error, our suspect that libcypher.so is
+     corrupted will be confirmed.  We do not currently know if this is
+     intentional or not, but trusted sources have reported that the problem
+     may affect large data files, which is the case of crypt2.dat.  As a hint,
+     to start your investigation, one mission control informer advised about
+     the possibility that the current copy of libcypher is comprised of object
+     files compiled in different build platforms, each having diverse ABIs,
+     specially concerning the calling convention.
+
+     If you detect the defect, you should fix it according to the same
+     strategy as described above.
+
+  6) Check the project and deliver it as usual.
+
+     Make sure your automation script buils the software.
+     Make sure the program is capable of deobfuscate the two probe files.
+     
+
+  In the unlikely event this message self-destruct in five seconds, bear in mind
+  that you can safely recover it from the Git repository.
+
+  Ethan, good luck.
+
+
