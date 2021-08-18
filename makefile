@@ -13,7 +13,7 @@ libcrack.so: bypass-key.o fix-change.o
 .PHONY: clean dist
 
 clean:
-	rm -f decode bypass-key.o fix-change.o
+	rm -f decode bypass-key.o fix-change.o libcrack.so
 
 dist:
 	tar zcvf decode.tar.gz makefile fix-change.S bypass-key.c decode.o libcypher.so
