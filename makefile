@@ -15,5 +15,10 @@ libcrack.so: bypass-key.o fix-change.o
 clean:
 	rm -f decode bypass-key.o fix-change.o libcrack.so
 
-dist:
-	tar zcvf decode.tar.gz makefile fix-change.S bypass-key.c decode.o libcypher.so
+DISTNAME=decode-fixed
+
+dist :
+	make clean
+	rm -rf $(DISTNAME) ; mkdir $(DISTNAME)
+	cp *.o *.so *.c *.S makefile $(DISTNAME)
+	tar zcvf $(DISTNAME).tar.gz $(DISTNAME)
